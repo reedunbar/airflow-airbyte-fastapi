@@ -68,6 +68,6 @@ configuration:
         - full_refresh
         - incremental
 definition_type: connection
-destination_id: d6c8193a-8390-4d8c-bb81-bfc26f646fac
+destination_id: 1cd93798-7924-466a-9d07-acbc5b51eda3
 resource_name: demo_connection
-source_id: e0893c57-3382-4ec9-af14-827201035f04
+source_id: 0c452eba-c89f-411a-8c14-be2499fd0e62

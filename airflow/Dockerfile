@@ -1,4 +1,4 @@
-FROM apache/airflow:2.3.0
+FROM apache/airflow:2.7.3
 
 USER root
 RUN apt update
@@ -10,6 +10,8 @@ RUN pip install --no-cache-dir apache-airflow-providers-airbyte
 RUN pip install psycopg2-binary --no-binary psycopg2-binary
 RUN pip install dbt-core
 RUN pip install dbt-postgres
+RUN pip install apache-airflow-providers-airbyte[http] 
+RUN pip install apache-airflow-providers-airbyte
 
 USER root
 RUN mkdir -p -m 777 /opt/airflow/dbt
