@@ -12,6 +12,7 @@ pip3 install -r requirements.txt
 
 docker network create -d bridge airflow_summit_network
 
+
 # configure octavia in the script
 OCTAVIA_ENV_FILE=${HOME}/.octavia
 DBT_PROFILE_FILE=${HOME}/.dbt/profiles.yaml
@@ -53,6 +54,13 @@ else
     echo "The dag exit successfully"
     exit 0
 fi
+
+# Build the webapp
+cd webapp
+docker build . -t myfastapiapp:latest
+cd..
+docker run -d --name myfastapiapp_container --network airflow_summit_network -p 8081:8081 myfastapiapp:latest
+echo "FastAPI web application is running on port 8081"
 
 docker stop dest
 docker rm dest
