@@ -24,6 +24,8 @@ rm -rf airbyte/*/*/state.yaml
 # Because of Mac M1 + dbt, we need to use an older version of postgres for now
 docker run --name dest --network airflow_summit_network -e POSTGRES_USER=demo_user -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:10
 
+
+
 cd airflow
 cp ${DBT_PROFILE_FILE} dbt/profiles.yml
 docker build . -t airflow-airbyte:1.0.0
@@ -33,6 +35,13 @@ docker-compose -f airflow/docker-compose.yaml up -d airflow-init
 docker-compose -f airflow/docker-compose.yaml up -d
 docker exec airflow-webserver airflow connections add 'airbyte_default' --conn-uri 'http://airbyte-server:8001'
 docker-compose -f airbyte/docker-compose.yaml up -d
+
+# Build the webapp
+cd webapp
+docker build . -t myfastapiapp:latest
+cd ..
+docker-compose -f webapp/docker-compose.yaml up -d
+echo "FastAPI web application is running on port 8081"
 
 echo "wait airbyte to be ready..."
 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8001/api/v1/health)" != "200" ]]; do echo "  [`date`] waiting...." && sleep 5; done'
@@ -55,12 +64,7 @@ else
     exit 0
 fi
 
-# Build the webapp
-cd webapp
-docker build . -t myfastapiapp:latest
-cd..
-docker run -d --name myfastapiapp_container --network airflow_summit_network -p 8081:8081 myfastapiapp:latest
-echo "FastAPI web application is running on port 8081"
+
 
 docker stop dest
 docker rm dest
