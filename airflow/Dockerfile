@@ -12,6 +12,7 @@ RUN pip install dbt-core
 RUN pip install dbt-postgres
 RUN pip install apache-airflow-providers-airbyte[http] 
 RUN pip install apache-airflow-providers-airbyte
+RUN pip install apache-airflow-providers-google
 
 USER root
 RUN mkdir -p -m 777 /opt/airflow/dbt
