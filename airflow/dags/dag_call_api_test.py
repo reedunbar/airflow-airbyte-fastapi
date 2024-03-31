@@ -19,7 +19,7 @@ with DAG('call_api_dag', default_args=default_args, schedule_interval='@daily') 
     # Define a task to wait for the API to be available
     api_sensor = HttpSensor(
         task_id='api_sensor',
-        http_conn_id='http_default',  # Connection ID for the API endpoint
+        http_conn_id='',  # Connection ID for the API endpoint
         method='HEAD',
         endpoint='http://webapp:8081',  # Endpoint to check if API is healthy
         response_check=lambda response: True if response.status_code == 200 else False,
