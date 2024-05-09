@@ -5,7 +5,7 @@ networks:
     external: true
 services:
   microservices:
-    image: model_service:lastest
+    image: model_service:latest
     ports:
       - "8082:8082"
     volumes:

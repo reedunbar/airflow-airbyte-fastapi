@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from llama_index.core import StorageContext, Settings, load_index_from_storage, VectorStoreIndex, Document
 from llama_index.llms.anthropic import Anthropic
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
@@ -24,14 +25,31 @@ Settings.context_window = 3900
 
 storage_directory_base = '/data/'
 
+class QueryPayload(BaseModel):
+    llm_id: str
+    query: str
+
+
+class TrainPayload(BaseModel):
+    llm_id: str
+    source_id: str
+    metadata: str
+    ids: list[str]
+
+@app.get("/hello")
+async def hello_world():
+    return {"response": "Hello World!"}
+
 # Define route to handle POST requests
-@app.get("/query")
-async def query_llm(query_text: str):
+@app.post("/query")
+async def query_llm(payload: QueryPayload):
     # Need to figure out how to start a session of some sort.
     # Provide a bucket/prefix and query.
     # Load Model from 
     try:
-        storage_directory = storage_directory_base + 'airflow-airbyte-fastapi/PLLcWHcmX9QjXkp8ZVCb1p-xqR9TU0fUAv'
+        llm_id = payload.llm_id
+        query_text = payload.query
+        storage_directory = storage_directory_base + '/' + llm_id 
         # rebuild storage context
         storage_context = StorageContext.from_defaults(persist_dir=storage_directory)
 
@@ -47,12 +65,20 @@ async def query_llm(query_text: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/train_from_bucket")
-def train_from_bucket(llm_id: str, source_id: str, metadata: str, ids: list):
+def train_from_bucket(payload: TrainPayload):
     
     try:
+        llm_id = payload.llm_id
+        source_id = payload.source_id
+        ids = payload.ids
+        metatdata = payload.metadata
+
+
         client = storage.Client()
         bucket = client.get_bucket(root_bucket)
-        blobs = bucket.list_blobs(prefix=source_id)
+        #blobs = bucket.list_blobs(prefix=source_id)
+        test = "/PLLcWHcmX9QjXkp8ZVCb1p-xqR9TU0fUAv/cleaned"
+        blobs = bucket.list_blobs(prefix=test)
 
         # Get Documents
         documents = []
