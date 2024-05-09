@@ -15,7 +15,8 @@ default_args = {
 }
 
 def check_api():
-    response = requests.get("http://webapp:8081")
+    response = requests.get("http://interface:8081/api/connections/")
+    response.raise_for_status()
     return response.status_code == 200
 
 with DAG('call_api_dag', default_args=default_args, schedule_interval='@daily') as dag:

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "turing-botany-416900",
+  "private_key_id": "6f7d91c22aaf4b9123d72ee0af7ff0f5d648bba7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC3DGIqIqYBQDI7\naIER9R+DFl00iFAKBgO6iVd5v8Vwu4XSeMyZZi6G5eRBLvwy7eF2ILshstsmeHyM\ni588wfXxVLYqOQjOkqM6SCtvVsCC859IpTui6jMaeDHcFKvy8f4QeMPlaS8ISqVV\nUxm9+lC0yruMxUQZ3DGo5Rd0ca8JbLqPEPhn4+chPXpxo5wx9zDViWPnYYs62/uS\nD300isQB5edfOyrHhyDQlURdRiNmJ83MMlbXDYcpWp3Uz6c0ymbp/aB1dIYhnoC6\nBg4jXTL5KEAFMgUeQTkmCk9I/7pls9khoeuqp8HQkSIkCDvqKAgbMkyUGNv30BOS\nX278B3aXAgMBAAECggEAB0hrWXDSeQdEWF/CjuPZUp5fq/jmclel61SOke4C3Ybg\nfqzGuy25GS3pZHyJlT8ossn/mAolNQUjM3ZUqhavgeAUdV6ajpl//BAmBkKF20/1\nHO9SDZvS17FDjpWV988QBDjB1o1WTTanGFt7kTb14hOU3bd1i6/am/UtdzkUtUO4\ndEjKwjvKlp9wtY+2d6SBAg1fL30Cnpfg+1B0jlW4zbU4cmOrsSAU1LC6MSQIUyWY\ntZR8gaUkirDp3nOml95nqqULcAOH/6DAiDRY0S36QAZK+TfK2yPo/8kTbNs/oH19\njozgvr5ivvXKOyPoM+a65JgUo5w3gUIapfE8cuB27QKBgQDiYQw3KVTKKXNtWfYu\nWymF0vAFeKf8rxjIQjW0nLnuA+o12TYZy9Hnb3b3u+LPuYUIL/3i/FjdinQts65t\ng8e8Q3NOzdW35SUHMpJD5SF1xm027AxdT382hNi4teC3SqOCgmWcRe9S9CPJBIkm\nVZis3squDV/UVGSfaSOt13g7RQKBgQDO/+ZQur/s3nTZTaJVA5/m8UhMoHtmO8vh\nwX+SBsdyP/TnaaJ8wQT/kyJvM7/2JFKsKibMGo5azMD6Id07gX4GMmx29PBXbMDu\nzrFL7x8tEnmM//AwrMMTmGY9fAg8hEAY9kbu+Gq51dh9s4kpucazOJQSNe+nn1Wq\n14LlNlaaKwKBgFYLaSc2UIIeyz7PKOFpyRiSmqSZvdAvhY3ojJ0/zPQJDOa2zvdz\nHy+GkIONKKKn80avZyL1o5lhXNNaLnx10F9gi91yIz+omzBnKm0gFF29tBliEzkM\nVGAWkoFysB07A3dBtPl3I4Y2QbvQO4kUk9lxPTx23OvJwA1PWz5iXdK5AoGASTBp\nurmNCq9NGVg9wVlavEkriwxjFS6nU9cayALlmhvK99d9wCZvIf5f+nmNsfX91SnC\nNgBdvPUQdmBq3JNYf9BsUVMhd4fYX5dtUK/nkgQqPhRwVIWBI/iKjcrBDsSj9S9+\nvRfQhIx701YbdUleXBfxIs83QUkw/QreGTUxQakCgYEAhftMStSdhDa1NleNe6Ll\nOPNMPC1Vk88u8UqCiam72KXJoTfagVIzk9urc304/ZnT1BCuj4Wiod0J30tdKbX6\nOLn1hWaCNiYiy31F3yfxUnIXfwFI9Uy6UFS+zuuDIMe07fN65r0R+T2jELHKP18S\nwJv7Ssxhcpi/AhCBR3ANlT0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "elt-storage@turing-botany-416900.iam.gserviceaccount.com",
+  "client_id": "116153685997815962875",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/elt-storage%40turing-botany-416900.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
