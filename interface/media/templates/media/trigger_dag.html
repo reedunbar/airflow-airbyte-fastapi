@@ -1,0 +1,110 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Step 1: Select Client Connection</title>
+</head>
+<body>
+    <h1>Step 1: Select Client Connection</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="connection_id">Select Client Connection:</label>
+        <select id="connection_id" name="connection_id">
+            {% for connection in connections %}
+            <option value="{{ connection.id }}">{{ connection }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Retrieve Video IDs</button>
+    </form>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Step 1: Select Client Connection</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#processButton').click(function() {
+                // Disable button and show processing message
+                $(this).prop('disabled', true);
+                $('#processingMessage').show();
+
+                // Send AJAX POST request to process form
+                $.ajax({
+                    url: '/media/select_client_connection/',
+                    type: 'POST',
+                    success: function(data) {
+                        alert(data.message);  // Show success message (for testing)
+                        window.location.href = data.redirect_url;  // Redirect to Step 2
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        alert('Error: ' + errorThrown);  // Show error message (for testing)
+                        $('#processButton').prop('disabled', false);  // Re-enable button
+                        $('#processingMessage').hide();  // Hide processing message
+                    }
+                });
+            });
+        });
+    </script>
+</head> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Step 1: Select Client Connection</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#retrieveVideosButton').click(function(e) {
+                e.preventDefault();  // Prevent default form submission
+
+                // Get selected connection_id from dropdown
+                var connectionId = $('#connection_id').val();
+
+                // Disable button and show processing message
+                $(this).prop('disabled', true);
+                $('#processingMessage').show();
+
+                // Send AJAX POST request to process form
+                $.ajax({
+                    url: '/api/trigger-dag/',  // Update URL based on your Django view
+                    type: 'POST',
+                    data: {
+                        'connection_id': connectionId,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include CSRF token
+                    },
+                    success: function(data) {
+                        alert(data.message);  // Show success message (for testing)
+                        window.location.href = data.redirect_url;  // Redirect to Step 2
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        alert('Error: ' + errorThrown);  // Show error message (for testing)
+                        $('#retrieveVideosButton').prop('disabled', false);  // Re-enable button
+                        $('#processingMessage').hide();  // Hide processing message
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Step 1: Select Client Connection</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="connection_id">Select Client Connection:</label>
+        <select id="connection_id" name="connection_id">
+            {% for connection in connections %}
+            <option value="{{ connection.id }}">{{ connection }}</option>
+            {% endfor %}
+        </select>
+        <button id="retrieveVideosButton" type="button">Retrieve Video IDs</button>
+    </form>
+
+    <div id="processingMessage" style="display: none;">Processing...</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: rd_user
+      POSTGRES_PASSWORD: AdminAdmin1!
+      POSTGRES_DB: llmesh
+    networks:
+      - airflow_summit_network
+
+networks:
+  airflow_summit_network:
+    external: true  # Use an existing external network

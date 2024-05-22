@@ -22,8 +22,10 @@ alias octavia='docker run -i --rm -v $(pwd):/home/octavia-project --network airf
 rm -rf airbyte/*/*/state.yaml
 
 # Because of Mac M1 + dbt, we need to use an older version of postgres for now
-docker run --name dest --network airflow_summit_network -e POSTGRES_USER=demo_user -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:10
+# docker run --name dest --network airflow_summit_network -e POSTGRES_USER=demo_user -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:10
 
+# Run Docker Compose to launch PostgreSQL DB
+docker-compose -f docker-compose.yaml up -d
 
 
 cd airflow
@@ -37,11 +39,11 @@ docker exec airflow-webserver airflow connections add 'airbyte_default' --conn-u
 docker-compose -f airbyte/docker-compose.yaml up -d
 
 # Build the webapp
-cd webapp
-docker build . -t myfastapiapp:latest
+cd interface
+docker build . -t interface:latest
 cd ..
-docker-compose -f webapp/docker-compose.yaml up -d
-echo "FastAPI web application is running on port 8081"
+docker-compose -f interface/docker-compose.yaml up -d
+echo "Interface Web Application is running on port 8081"
 
 echo "wait airbyte to be ready..."
 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8001/api/v1/health)" != "200" ]]; do echo "  [`date`] waiting...." && sleep 5; done'
